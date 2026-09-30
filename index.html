@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>게임 개발사 전문 맞춤형 FGT 지원 프로그램 - 디벨로켓</title>
-    <!-- 구글 폰트 적용 -->
-    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <title>중소·인디 게임 개발사를 위한 맞춤형 FGT 지원 프로그램 - 디벨로켓</title>
+    <meta name="description" content="전문 교육을 이수한 테스터 인력이 직접 분석하는 중소·인디 게임 개발사 대상 맞춤형 FGT 지원 프로그램. 보안 환경과 심층 분석 리포트를 제공합니다.">
+    <meta property="og:title" content="중소·인디 게임 개발사를 위한 맞춤형 FGT 지원 프로그램">
+    <meta property="og:description" content="검증된 테스터 인력 매칭 · NDA 기반 보안 환경 · 심층 분석 리포트 제공">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
     <style>
         :root {
             --bg: #0b0f19;
@@ -17,14 +19,15 @@
             --text-muted: #cbd5e1;
         }
 
-        * { box-sizing: border-box; scroll-behavior: smooth; }
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         
         body {
             margin: 0;
             padding: 0;
             background-color: var(--bg);
             color: var(--text);
-            font-family: 'Pretendard', sans-serif;
+            font-family: 'Pretendard Variable', Pretendard, -apple-system, 'Noto Sans KR', sans-serif;
             overflow-x: hidden;
         }
 
@@ -39,7 +42,7 @@
             pointer-events: none;
         }
 
-        /* 네비게이션 바 (2번 스타일 적용) */
+        /* 네비게이션 바 */
         .nav {
             position: sticky;
             top: 0;
@@ -68,7 +71,7 @@
         }
         .nav-links {
             display: flex;
-            gap: 20px;
+            gap: 15px;
             list-style: none;
             margin: 0;
             padding: 0;
@@ -76,7 +79,7 @@
         .nav-links a {
             text-decoration: none;
             color: var(--text-muted);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: 600;
             transition: color 0.2s;
         }
@@ -161,6 +164,29 @@
             margin-bottom: 10px;
         }
 
+        .partner-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .partner-box {
+            background: rgba(30, 41, 59, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 600;
+            color: var(--text);
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .partner-box:hover {
+            transform: translateY(-3px);
+            border-color: rgba(56, 189, 248, 0.4);
+        }
+
         ul {
             padding-left: 20px;
             color: var(--text-muted);
@@ -189,7 +215,124 @@
             box-shadow: 0 6px 20px rgba(56, 189, 248, 0.6);
         }
 
-        /* 푸터 사업자 정보 스타일 */
+        /* FGT 리포트 및 현장 스케치 슬라이드 공통 컨테이너 스타일 */
+        .report-slider-container {
+            position: relative;
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 30px;
+            margin-top: 20px;
+            overflow: hidden;
+        }
+
+        .report-slide, .sketch-slide {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .report-slide.active, .sketch-slide.active {
+            display: block;
+        }
+
+        .slide-badge {
+            display: inline-block;
+            background: rgba(56, 189, 248, 0.15);
+            color: var(--primary);
+            font-size: 0.85rem;
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+        }
+
+        .report-slide h3, .sketch-slide h3 {
+            color: #ffffff;
+            font-size: 1.25rem;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .report-slide p, .sketch-slide p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .slide-image-box {
+            width: 100%;
+            max-height: 480px;
+            background: #000000;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide-image-box img {
+            width: 100%;
+            height: auto;
+            max-height: 480px;
+            object-fit: contain;
+            display: block;
+        }
+
+        /* 슬라이드 좌우 버튼 */
+        .slider-btn {
+            position: absolute;
+            top: 45%;
+            transform: translateY(-50%);
+            background: rgba(15, 23, 42, 0.85);
+            color: var(--primary);
+            border: 1px solid var(--border);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s, color 0.2s;
+            z-index: 10;
+        }
+
+        .slider-btn:hover {
+            background: var(--primary);
+            color: #ffffff;
+        }
+
+        .prev-btn { left: 10px; }
+        .next-btn { right: 10px; }
+
+        /* 하단 도트 인디케이터 */
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .dot.active {
+            background: var(--primary);
+            width: 25px;
+            border-radius: 5px;
+        }
+
+        /* 푸터 정보 */
         .footer-info {
             background: rgba(15, 23, 42, 0.95);
             border: 1px solid rgba(255, 255, 255, 0.08);
@@ -204,9 +347,62 @@
             color: var(--text-muted);
         }
 
+        .cta-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+        .btn-ghost {
+            display: inline-block; margin-top: 20px; padding: 14px 28px; border-radius: 8px;
+            border: 1px solid rgba(56, 189, 248, 0.5); color: var(--primary);
+            font-weight: 700; text-decoration: none; transition: background 0.2s;
+        }
+        .btn-ghost:hover { background: rgba(56, 189, 248, 0.12); }
+
+        .steps { list-style: none; counter-reset: step; padding: 0; display: grid; gap: 12px; }
+        .steps li {
+            counter-increment: step; position: relative; margin: 0;
+            background: rgba(30, 41, 59, 0.6); border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px; padding: 16px 16px 16px 64px;
+        }
+        .steps li::before {
+            content: counter(step); position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+            width: 32px; height: 32px; border-radius: 50%;
+            background: rgba(56, 189, 248, 0.15); color: var(--primary); font-weight: 800;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        .faq-list { display: flex; flex-direction: column; gap: 12px; }
+        details.faq-item {
+            background: rgba(30, 41, 59, 0.6); border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px; padding: 0 20px;
+        }
+        details.faq-item summary {
+            cursor: pointer; padding: 16px 0; font-weight: 700; color: var(--primary);
+            list-style: none; display: flex; justify-content: space-between; gap: 12px;
+        }
+        details.faq-item summary::-webkit-details-marker { display: none; }
+        details.faq-item summary::after { content: '+'; font-size: 1.3rem; line-height: 1; }
+        details.faq-item[open] summary::after { content: '−'; }
+        details.faq-item p { margin: 0 0 16px; }
+
+        .dot:focus-visible, .slider-btn:focus-visible, a:focus-visible, summary:focus-visible {
+            outline: 2px solid var(--primary); outline-offset: 3px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * { animation: none !important; transition: none !important; }
+            html { scroll-behavior: auto; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         @media (max-width: 768px) {
-            .nav-links { display: none; }
+            .nav-wrap { height: auto; padding: 10px 16px; gap: 14px; }
+            .nav-links { overflow-x: auto; gap: 14px; white-space: nowrap; scrollbar-width: none; }
+            .nav-links::-webkit-scrollbar { display: none; }
+            .glass-card { padding: 24px 20px; }
             h1 { font-size: 1.8rem; }
+            .report-slider-container { padding: 20px 10px; }
         }
     </style>
 </head>
@@ -215,11 +411,14 @@
     <!-- 상단 네비게이션 바 -->
     <nav class="nav">
         <div class="nav-wrap">
-            <a href="#" class="nav-logo">Develrocket <span>FGT</span></a>
+            <a href="#" class="nav-logo">Develocket <span>FGT</span></a>
             <ul class="nav-links">
                 <li><a href="#intro">소개</a></li>
                 <li><a href="#features">특장점</a></li>
                 <li><a href="#process">프로세스</a></li>
+                <li><a href="#partners">참여기업</a></li>
+                <li><a href="#sketch-section">현장 스케치</a></li>
+                <li><a href="#report-section">리포트 예시</a></li>
                 <li><a href="#faq">FAQ</a></li>
                 <li><a href="#apply">신청하기</a></li>
             </ul>
@@ -232,29 +431,33 @@
     <div class="container">
         <!-- 상단 헤더 섹션 -->
         <div class="glass-card" id="intro">
-            <h1>게임 개발사 전문 맞춤형 FGT 지원 프로그램</h1>
+            <h1>중소·인디 게임 개발사를 위한 맞춤형 FGT 지원 프로그램</h1>
             <div class="highlight-quote">
-                "출시 전, 진짜 게이머들의 플레이 반응을 수집해 게임의 완성도를 높여드립니다."
+                "전문적인 교육을 이수한 수강생 및 검증된 인재들이 직접 분석하고 테스트하여 게임의 완성도를 높여드립니다."
             </div>
-            <p>중소·중견·대기업 개발사를 위한 전문 FGT 서비스입니다.</p>
-            <p>철저한 보안 환경 속에서 타겟 유저들의 실시간 반응과 심층 데이터를 수집하여 완벽한 빌드 마감에 기여합니다.</p>
+            <p>중소·인디 게임 개발사의 성공적인 타이틀 출시를 뒷받침하는 디벨로켓만의 맞춤형 FGT 지원 서비스입니다.</p>
+            <p>철저한 보안 환경 속에서 전문 역량을 갖춘 테스트 인재들의 실시간 반응과 심층 데이터를 수집하여 성공적인 빌드 검증과 완성도 향상을 지원합니다.</p>
+            <div class="cta-row">
+                <a href="#apply" class="btn-apply">참여 신청하기</a>
+                <a href="#report-section" class="btn-ghost">리포트 예시 보기</a>
+            </div>
         </div>
 
         <!-- 왜 이 FGT 프로그램이어야 할까요? -->
         <div class="glass-card" id="features">
-            <h2>💡 왜 이 FGT 프로그램이어야 할까요?</h2>
+            <h2>💡 왜 디벨로켓 FGT 프로그램이어야 할까요?</h2>
             <div class="grid-3">
                 <div class="feature-box">
-                    <h3>정밀 타겟 매칭</h3>
-                    <p>장르별 성향 분석을 거친 검증된 유저 풀을 매칭하여 신뢰도 높은 데이터를 확보합니다.</p>
+                    <h3>전문 교육 수료 인재 매칭</h3>
+                    <p>철저한 게임 테스팅 및 QA 과정을 이수한 전문 수강생/인력풀을 매칭하여 신뢰도 높은 데이터를 확보합니다.</p>
                 </div>
                 <div class="feature-box">
-                    <h3>솔직한 피드백 수집</h3>
-                    <p>개발진의 시각을 벗어나, 실사용자가 체감하는 날것의 플레이 경험과 병목 구간을 포착합니다.</p>
+                    <h3>전문가 시선의 피드백</h3>
+                    <p>단순한 플레이 감상을 넘어, 전문 교육을 받은 인력의 시각으로 병목 구간과 잠재적 이슈를 예리하게 포착합니다.</p>
                 </div>
                 <div class="feature-box">
-                    <h3>분석 리포트 제공</h3>
-                    <p>테스트 직후 UI/UX, 밸런스, 이탈 원인이 체계적으로 정리된 종합 분석 리포트를 제공합니다.</p>
+                    <h3>체계적인 심층 분석 리포트</h3>
+                    <p>테스트 직후 UI/UX, 밸런스, 이탈 원인 등이 체계적으로 정리된 전문 분석 리포트를 제공합니다.</p>
                 </div>
             </div>
         </div>
@@ -266,44 +469,178 @@
             <p><strong>1. 프로그램 주요 혜택</strong></p>
             <ul>
                 <li>오프라인/온라인 전용 테스트 인프라 및 환경 조성 지원</li>
-                <li>타겟 장르별 맞춤형 유저 매칭 및 심층 테스트 진행</li>
+                <li>전문 교육 과정을 수료한 맞춤형 테스터 인력 매칭 및 심층 테스트 진행</li>
                 <li>유저 플레이 성향 및 개선점 종합 분석 리포트(PDF) 제공</li>
             </ul>
 
             <p style="margin-top: 25px;"><strong>2. 진행 프로세스</strong></p>
-            <ul>
+            <ol class="steps">
                 <li><strong>참여 신청:</strong> 하단 신청서를 통해 게임 빌드 및 프로젝트 개요 제출</li>
                 <li><strong>선정 및 조율:</strong> 테스트 일정 및 장르 적합성 검토 후 최종 확정</li>
-                <li><strong>테스트 진행:</strong> 철저한 보안(NDA) 서약 하에 전문 FGT 실시</li>
+                <li><strong>테스트 진행:</strong> 철저한 보안(NDA) 서약 하에 전문 수강생 인력과 함께 FGT 실시</li>
                 <li><strong>결과 리포트 전달:</strong> 분석 완료된 최종 피드백 리포트 제공</li>
-            </ul>
+            </ol>
+        </div>
+
+        <!-- 함께 참여한 기업들 섹션 -->
+        <div class="glass-card" id="partners">
+            <h2>🤝 함께 참여한 기업들</h2>
+            <p>디벨로켓 FGT 프로그램과 함께 성공적인 게임 빌드 검증을 거쳐간 파트너 개발사입니다.</p>
+            <div class="partner-grid">
+                <div class="partner-box">Stuck Pixel</div>
+                <div class="partner-box">에어캡</div>
+                <div class="partner-box">반지하게임즈</div>
+                <div class="partner-box">넥스코어</div>
+            </div>
+        </div>
+
+        <!-- FGT 현장 스케치 슬라이드 섹션 -->
+        <div class="glass-card" id="sketch-section">
+            <h2>📸 FGT 현장 스케치</h2>
+            <p>실제 오프라인 환경에서 전문 교육을 이수한 인재들과 함께 집중도 있게 진행된 FGT 테스트 현장을 만나보세요.</p>
+            
+            <div class="report-slider-container">
+                <!-- 스케치 슬라이드 1 -->
+                <div class="sketch-slide active">
+                    <div class="slide-badge">Sketch 01</div>
+                    <h3>현장 테스트 전경</h3>
+                    <p>전용 테스트룸에서 전문 수강생 인력이 진지하게 빌드를 플레이하며 실시간 피드백을 기록하고 있는 모습입니다.</p>
+                    <div class="slide-image-box">
+                        <img loading="lazy" decoding="async" src="1-1.png" alt="FGT 현장 스케치 1-1">
+                    </div>
+                </div>
+
+                <!-- 스케치 슬라이드 2 -->
+                <div class="sketch-slide">
+                    <div class="slide-badge">Sketch 02</div>
+                    <h3>밀착 모니터링 및 세부 관찰</h3>
+                    <p>유저들의 조작 패턴과 플레이 중 발생하는 병목 구간, 돌발 이슈 등을 전문 역량을 갖춘 인력이 실시간으로 면밀히 관찰합니다.</p>
+                    <div class="slide-image-box">
+                        <img loading="lazy" decoding="async" src="2-2.png" alt="FGT 현장 스케치 2-2">
+                    </div>
+                </div>
+
+                <!-- 스케치 슬라이드 3 -->
+                <div class="sketch-slide">
+                    <div class="slide-badge">Sketch 03</div>
+                    <h3>심층 인터뷰 및 질의응답</h3>
+                    <p>플레이 직후 진행되는 심층 면담(FGI)을 통해 정량 데이터로 담아내기 어려운 세밀한 소감과 개선 의견을 수집합니다.</p>
+                    <div class="slide-image-box">
+                        <img loading="lazy" decoding="async" src="3-3.png" alt="FGT 현장 스케치 3-3">
+                    </div>
+                </div>
+
+                <!-- 슬라이드 조작 버튼 -->
+                <button class="slider-btn prev-btn" onclick="moveSketchSlide(-1)" aria-label="이전 슬라이드">&#10094;</button>
+                <button class="slider-btn next-btn" onclick="moveSketchSlide(1)" aria-label="다음 슬라이드">&#10095;</button>
+            </div>
+
+            <!-- 스케치 슬라이드 인디케이터 (점) -->
+            <div class="slider-dots" id="sketch-dots">
+                <span class="dot sketch-dot active" onclick="currentSketchSlide(1)"></span>
+                <span class="dot sketch-dot" onclick="currentSketchSlide(2)"></span>
+                <span class="dot sketch-dot" onclick="currentSketchSlide(3)"></span>
+            </div>
+        </div>
+
+        <!-- FGT 결과물 및 피드백 리포트 슬라이드 섹션 -->
+        <div class="glass-card" id="report-section">
+            <h2>📊 FGT 결과물 및 피드백 리포트</h2>
+            <p>전문 인력의 실전 테스트를 거쳐 개발사에 최종 제공되는 전문 FGT 분석 리포트의 주요 항목을 확인해 보세요.</p>
+            
+            <div class="report-slider-container">
+                <!-- 슬라이드 1 -->
+                <div class="report-slide active">
+                    <div class="slide-badge">01. FGT 리포트</div>
+                    <h3>프로젝트 FGT 피드백 보고서</h3>
+                    <p>개발사의 성공적인 타이틀 출시를 뒷받침하는 디벨로켓의 전문 FGT 및 심층 리포트 제공 프로그램 안내 문서입니다.</p>
+                    <div class="slide-image-box">
+                        <img loading="lazy" decoding="async" src="1.png" alt="1번 이미지">
+                    </div>
+                </div>
+
+                <!-- 슬라이드 2 -->
+                <div class="report-slide">
+                    <div class="slide-badge">02. 기대 효과 및 검증 구조</div>
+                    <h3>게임 완성도 극대화 프로세스</h3>
+                    <p>철저한 실전 테스트를 통한 객관적인 지표 확보와 개발사의 고품질 피드백 반영을 동시에 달성합니다.</p>
+                    <div class="slide-image-box">
+                        <img loading="lazy" decoding="async" src="2.png" alt="2번 이미지">
+                    </div>
+                </div>
+
+                <!-- 슬라이드 3 -->
+                <div class="report-slide">
+                    <div class="slide-badge">03. 프로젝트 목표 및 상세 계획</div>
+                    <h3>체계적인 일정 및 테스트 빌드 검증 목표</h3>
+                    <p>성공적인 빌드 마감을 위해 세부적인 테스트 일정과 세부 내용입니다.</p>
+                    <div class="slide-image-box">
+                        <img loading="lazy" decoding="async" src="3.png" alt="3번 이미지">
+                    </div>
+                </div>
+
+                <!-- 슬라이드 4 -->
+                <div class="report-slide">
+                    <div class="slide-badge">04. 유저 몰입도 및 플레이 분석</div>
+                    <h3>인게임 유저 활성화 및 플레이 패턴 분석</h3>
+                    <p>테스터들의 체류 시간과 미션 수행 구조, 구간별 이탈 요인을 정밀하게 측정하여 분석합니다.</p>
+                    <div class="slide-image-box">
+                        <img loading="lazy" decoding="async" src="4.png" alt="4번 이미지">
+                    </div>
+                </div>
+
+                <!-- 슬라이드 5 -->
+                <div class="report-slide">
+                    <div class="slide-badge">05. 총평 및 디바이스 최적화 분석</div>
+                    <h3>시각적 몰입도 및 하드웨어 안정성 검증</h3>
+                    <p>그래픽 콘셉트의 매력도 분석 및 플레이 환경에서의 발열 제어, 장기 플레이 안정성 평가 리포트입니다.</p>
+                    <div class="slide-image-box">
+                        <img loading="lazy" decoding="async" src="5.png" alt="5번 이미지">
+                    </div>
+                </div>
+
+                <!-- 슬라이드 6 -->
+                <div class="report-slide">
+                    <div class="slide-badge">06. 버그 및 오류 QA 리포트</div>
+                    <h3>실무형 이슈 추적 및 재현 경로 기록</h3>
+                    <p>이슈 유형별 우선순위와 정확한 재현 경로, 기대 결과 및 실제 결과를 분석하여 개발진에 전달하는 QA 리포트입니다.</p>
+                    <div class="slide-image-box">
+                        <img loading="lazy" decoding="async" src="6.png" alt="6번 이미지">
+                    </div>
+                </div>
+
+                <!-- 슬라이드 조작 버튼 -->
+                <button class="slider-btn prev-btn" onclick="moveSlide(-1)" aria-label="이전 슬라이드">&#10094;</button>
+                <button class="slider-btn next-btn" onclick="moveSlide(1)" aria-label="다음 슬라이드">&#10095;</button>
+            </div>
+
+            <!-- 슬라이드 인디케이터 (점) -->
+            <div class="slider-dots">
+                <span class="dot active" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+                <span class="dot" onclick="currentSlide(4)"></span>
+                <span class="dot" onclick="currentSlide(5)"></span>
+                <span class="dot" onclick="currentSlide(6)"></span>
+            </div>
         </div>
 
         <!-- 보안과 신뢰 약속 -->
         <div class="glass-card">
             <h2>🔒 철저한 보안과 신뢰 약속</h2>
             <ul>
-                <li>모든 참여 인원은 철저한 <strong>비밀유지계약(NDA) 체결 및 보안 서약</strong> 후 테스트에 참여합니다.</li>
+                <li>모든 테스트 참여 인력은 철저한 <strong>비밀유지계약(NDA) 체결 및 보안 서약</strong> 후 테스트에 참여합니다.</li>
                 <li>테스트 빌드 유출 방지를 위한 오프라인 통제 환경 구축 및 녹화 방지 조치를 철저히 준수합니다.</li>
             </ul>
         </div>
 
-        <!-- FAQ (자주 묻는 질문) 섹션 추가 -->
+        <!-- FAQ 섹션 -->
         <div class="glass-card" id="faq">
             <h2>❓ 자주 묻는 질문 (FAQ)</h2>
-            <div style="display: flex; flex-direction: column; gap: 20px;">
-                <div class="feature-box">
-                    <h3>Q. 어떤 장르나 플랫폼의 게임까지 테스트가 가능한가요?</h3>
-                    <p>PC, 모바일, 콘솔 등 다양한 플랫폼과 RPG, 액션, 시뮬레이션, 인디 게임 등 장르에 제한 없이 맞춤형 FGT가 지원됩니다.</p>
-                </div>
-                <div class="feature-box">
-                    <h3>Q. 테스트 진행 시 보안 유지는 어떻게 보장되나요?</h3>
-                    <p>참여하는 모든 테스터는 사전에 철저한 비밀유지계약(NDA)을 체결하며, 외부 유출 방지를 위한 통제된 환경 및 보안 솔루션이 적용됩니다.</p>
-                </div>
-                <div class="feature-box">
-                    <h3>Q. 결과 리포트는 언제, 어떤 형태로 제공되나요?</h3>
-                    <p>테스트 종료 후 영업일 기준 약 3~5일 이내에 유저 정량/정성 데이터와 개선 포인트가 담긴 종합 분석 리포트(PDF)를 전달해 드립니다.</p>
-                </div>
+            <div class="faq-list">
+                <details class="faq-item"><summary>Q. 어떤 장르나 플랫폼의 게임까지 테스트가 가능한가요?</summary><p>PC, 모바일, 콘솔 등 다양한 플랫폼과 RPG, 액션, 시뮬레이션, 인디 게임 등 장르에 제한 없이 맞춤형 FGT가 지원됩니다.</p></details>
+                <details class="faq-item"><summary>Q. 테스트 진행 시 보안 유지는 어떻게 보장되나요?</summary><p>참여하는 모든 인력은 사전에 철저한 비밀유지계약(NDA)을 체결하며, 외부 유출 방지를 위한 통제된 환경 및 보안 솔루션이 적용됩니다.</p></details>
+                <details class="faq-item"><summary>Q. 결과 리포트는 언제, 어떤 형태로 제공되나요?</summary><p>테스트 종료 후 전문 인력의 분석을 거쳐, 정량·정성 데이터와 개선 포인트가 담긴 종합 분석 리포트(PDF)를 전달해 드립니다.</p></details>
             </div>
         </div>
 
@@ -315,8 +652,7 @@
             <p><strong>신청 방법:</strong> 아래 신청 링크를 통해 접수</p>
             <p><strong>문의 사항:</strong> dh.song.a@kiweb.or.kr</p>
 
-            <!-- 구글 폼 링크 연동 버튼 -->
-            <a href="https://forms.gle/TrQQv11hNpUWsx1MA" target="_blank" class="btn-apply">FGT 참여하기</a>
+            <a href="https://forms.gle/TrQQv11hNpUWsx1MA" target="_blank" rel="noopener" class="btn-apply">FGT 참여하기</a>
         </div>
 
         <!-- 하단 사업자 정보 영역 -->
@@ -329,91 +665,105 @@
         </div>
     </div>
 
-    <!-- Three.js CDN 및 배경 3D 그래픽 스크립트 -->
+    <!-- Three.js CDN 및 배경 3D 그래픽 스크립트 (웹GL 배경) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
         const container = document.getElementById('webgl-container');
+        const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.z = 6;
+        try {
+            const isMobile = innerWidth < 768;
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, innerWidth / innerHeight, 0.1, 1000);
+            camera.position.z = 6;
 
-        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        container.appendChild(renderer.domElement);
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: !isMobile });
+            renderer.setSize(innerWidth, innerHeight);
+            renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+            container.appendChild(renderer.domElement);
 
-        // 배경 파티클 (별 효과) 추가
-        const starCount = 400;
-        const starGeo = new THREE.BufferGeometry();
-        const starPositions = new Float32Array(starCount * 3);
-        for(let i = 0; i < starCount * 3; i += 3) {
-            starPositions[i] = (Math.random() - 0.5) * 30;
-            starPositions[i+1] = (Math.random() - 0.5) * 30;
-            starPositions[i+2] = (Math.random() - 0.5) * 30;
-        }
-        starGeo.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
-        const starMat = new THREE.PointsMaterial({ color: 0x38bdf8, size: 0.03, transparent: true, opacity: 0.6 });
-        const stars = new THREE.Points(starGeo, starMat);
-        scene.add(stars);
+            // 배경 별 파티클
+            const starCount = isMobile ? 150 : 400;
+            const starPositions = new Float32Array(starCount * 3);
+            for (let i = 0; i < starPositions.length; i++) starPositions[i] = (Math.random() - 0.5) * 30;
+            const starGeo = new THREE.BufferGeometry();
+            starGeo.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
+            const stars = new THREE.Points(starGeo, new THREE.PointsMaterial({ color: 0x38bdf8, size: 0.03, transparent: true, opacity: 0.6 }));
+            scene.add(stars);
 
-        // 입체 기하학 오브젝트들 생성
-        const group = new THREE.Group();
-        scene.add(group);
+            // 와이어프레임 오브젝트 (조명 불필요한 BasicMaterial 사용)
+            const group = new THREE.Group();
+            scene.add(group);
+            const material = new THREE.MeshBasicMaterial({ color: 0x0284c7, wireframe: true, transparent: true, opacity: 0.7 });
+            const mesh1 = new THREE.Mesh(new THREE.IcosahedronGeometry(1.2, 0), material);
+            mesh1.position.set(-3, 1, -2);
+            const mesh2 = new THREE.Mesh(new THREE.TorusGeometry(1.5, 0.4, 16, 100), material);
+            mesh2.position.set(3, -1.5, -3);
+            group.add(mesh1, mesh2);
 
-        const geometry = new THREE.IcosahedronGeometry(1.2, 0);
-        const material = new THREE.MeshStandardMaterial({
-            color: 0x0284c7,
-            wireframe: true,
-            roughness: 0.2
-        });
+            // 마우스 목표 회전값
+            let tx = 0, ty = 0;
+            addEventListener('mousemove', (e) => {
+                tx = (e.clientX / innerWidth - 0.5) * 0.6;
+                ty = (e.clientY / innerHeight - 0.5) * 0.6;
+            });
+            addEventListener('resize', () => {
+                camera.aspect = innerWidth / innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(innerWidth, innerHeight);
+                if (reduceMotion) renderer.render(scene, camera);
+            });
 
-        const mesh1 = new THREE.Mesh(geometry, material);
-        mesh1.position.set(-3, 1, -2);
-        group.add(mesh1);
-
-        const mesh2 = new THREE.Mesh(new THREE.TorusGeometry(1.5, 0.4, 16, 100), material);
-        mesh2.position.set(3, -1.5, -3);
-        group.add(mesh2);
-
-        // 조명 추가
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
-        scene.add(ambientLight);
-
-        const pointLight = new THREE.PointLight(0x38bdf8, 2);
-        pointLight.position.set(5, 5, 5);
-        scene.add(pointLight);
-
-        // 마우스 인터랙션 좌표
-        let mouseX = 0;
-        let mouseY = 0;
-        window.addEventListener('mousemove', (e) => {
-            mouseX = (e.clientX - window.innerWidth / 2) * 0.0005;
-            mouseY = (e.clientY - window.innerHeight / 2) * 0.0005;
-        });
-
-        // 반응형 창 크기 조절
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
-
-        // 애니메이션 루프
-        function animate() {
-            requestAnimationFrame(animate);
-
-            group.rotation.x += 0.002 + (mouseY - group.rotation.x) * 0.05;
-            group.rotation.y += 0.003 + (mouseX - group.rotation.y) * 0.05;
-
-            mesh1.rotation.x += 0.008;
-            mesh2.rotation.z += 0.005;
-            stars.rotation.y -= 0.0005;
-
-            renderer.render(scene, camera);
+            let running = true;
+            function animate() {
+                if (!running) return;
+                requestAnimationFrame(animate);
+                group.rotation.x += (ty - group.rotation.x) * 0.05;
+                group.rotation.y += (tx - group.rotation.y) * 0.05 + 0.002;
+                mesh1.rotation.x += 0.008;
+                mesh2.rotation.z += 0.005;
+                stars.rotation.y -= 0.0005;
+                renderer.render(scene, camera);
+            }
+            // 탭이 숨겨지면 렌더링 중지
+            document.addEventListener('visibilitychange', () => {
+                running = !document.hidden;
+                if (running && !reduceMotion) animate();
+            });
+            reduceMotion ? renderer.render(scene, camera) : animate();
+        } catch (err) {
+            console.warn('WebGL을 사용할 수 없어 배경 효과를 건너뜁니다.', err);
         }
 
-        animate();
+        // 슬라이더 공통 로직 (버튼 / 도트 / 터치 스와이프)
+        function createSlider(slideSel, dotSel) {
+            const slides = [...document.querySelectorAll(slideSel)];
+            const dots = [...document.querySelectorAll(dotSel)];
+            let idx = 0;
+            const show = (n) => {
+                idx = (n + slides.length) % slides.length;
+                slides.forEach((el, k) => el.classList.toggle('active', k === idx));
+                dots.forEach((el, k) => el.classList.toggle('active', k === idx));
+            };
+            let x0 = null;
+            const box = slides[0].parentElement;
+            box.addEventListener('touchstart', (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+            box.addEventListener('touchend', (e) => {
+                if (x0 === null) return;
+                const dx = e.changedTouches[0].clientX - x0;
+                if (Math.abs(dx) > 50) show(idx + (dx < 0 ? 1 : -1));
+                x0 = null;
+            });
+            return { move: (d) => show(idx + d), goto: (n) => show(n - 1) };
+        }
+
+        const reportSlider = createSlider('.report-slide', '#report-section .dot');
+        const sketchSlider = createSlider('.sketch-slide', '.sketch-dot');
+
+        function moveSlide(n) { reportSlider.move(n); }
+        function currentSlide(n) { reportSlider.goto(n); }
+        function moveSketchSlide(n) { sketchSlider.move(n); }
+        function currentSketchSlide(n) { sketchSlider.goto(n); }
     </script>
 </body>
 </html>
